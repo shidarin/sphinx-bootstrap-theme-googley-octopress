@@ -161,6 +161,43 @@
         $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
         });
 
+    // ========================================================================
+    // Version Styles
+    // ========================================================================
+
+    $('.versionadded').each(function() {
+        var versionMod = $(this).find('.versionmodified').text();
+        var firstLine = $(this).children('p:first').clone().children().remove().end().text();
+        
+        $(this).children('p:first').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + versionMod + '</h3></div>');
+        $(this).children('div:first').after('<p>' + firstLine + '</p>');
+        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
+        $(this).addClass('panel panel-success');
+        });
+    
+    $('.versionchanged').each(function() {
+        var versionMod = $(this).find('.versionmodified').text();
+        var firstLine = $(this).children('p:first').clone().children().remove().end().text();
+        
+        $(this).children('p:first').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + versionMod + '</h3></div>');
+        $(this).children('div:first').after('<p>' + firstLine + '</p>');
+        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
+        $(this).addClass('panel panel-info');
+        });
+    
+    $('.deprecated').each(function() {
+        var versionMod = $(this).find('.versionmodified').text();
+        var firstLine = $(this).children('p:first').clone().children().remove().end().text();
+        
+        $(this).children('p:first').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + versionMod + '</h3></div>');
+        $(this).children('div:first').after('<p>' + firstLine + '</p>');
+        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
+        $(this).addClass('panel panel-danger');
+        });
+
     // Inline code styles to Bootstrap style.
     $('tt.docutils.literal').not(".xref").each(function (i, e) {
       // ignore references
