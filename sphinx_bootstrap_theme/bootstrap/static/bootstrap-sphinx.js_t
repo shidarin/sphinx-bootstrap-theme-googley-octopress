@@ -162,9 +162,12 @@
       .filter('.note')
         .removeClass('panel-info')
         .addClass('panel-primary').end()
-      .filter('.warning, .caution, .error, .danger')
+      .filter('.warning, .caution')
         .removeClass('panel-info')
-        .addClass('panel-warning').end();
+        .addClass('panel-warning').end()
+      .filter('.error, .danger')
+        .removeClass('panel-info')
+        .addClass('panel-danger').end();
     
     // Format the inside of the Note/Warning panels correctly
     $('.admonition').each(function() {
