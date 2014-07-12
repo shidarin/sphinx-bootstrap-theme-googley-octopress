@@ -217,5 +217,34 @@
     // Update sourcelink to remove outerdiv (fixes appearance in navbar).
     var $srcLink = $(".nav #sourcelink");
     $srcLink.parent().html($srcLink.html());
+    
+    // ========================================================================
+    // Code Display
+    // ========================================================================
+
+    // Code Without Line Numbers
+    $('.highlight').each(function() {
+        if ( !($(this).parent().first().hasClass('code')) ) {
+            var codeType = $(this).parent().first().attr("class").replace('highlight-', '');
+            
+            $(this).wrap('<figure class="code panel panel-default"></figure>');
+            $(this).children()
+                .wrap('<table><tbody><tr><td class="code"></td></tr></tbody></table>')
+                .wrapInner('<code class="' + codeType + '"></code>')
+                .find('.go').addClass('s').removeClass('go');
+          };
+    });
+
+    // Code With Line Numbers
+    $('.highlighttable').each(function() {
+        var codeType = $(this).parent().first().attr("class").replace('highlight-', '');
+        
+        $(this).removeClass().wrap('<figure class="code panel panel-default"><div class="highlight"></div></figure>');
+        $(this).find('.linenos').removeClass().addClass('gutter').find('pre').addClass('line-numbers').wrapInner('<span class="line-number"></span>');
+        $(this).find('.highlight').children().unwrap().wrapInner('<code class="' + codeType + '"></code>');
+    });
+
+    // Highlight Lines correctly
+    $('.hll').addClass('line marked');
   });
 }(window.$jqTheme || window.jQuery));
