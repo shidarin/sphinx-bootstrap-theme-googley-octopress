@@ -68,6 +68,18 @@
     }
   });
 
+  patch_args = function(element) {
+    element.find('dl.docutils').addClass('list-group').css('padding-top', '15px').each(function() {
+        $(this).children(':even').each(function() {
+            $(this).add($(this).next()).wrapAll('<li class="list-group-item"></li>');
+            });
+        $(this).find('p').addClass('panel-text');
+        }).find('dd').css("padding-left", "20px");
+    element.find('dl.docutils').parent().each(function() {
+        $(this).parent().filter('blockquote').children('div:first').unwrap().end();
+    });
+  };
+
   $(document).ready(function () {
     // Add styling, structure to TOC's.
     $(".dropdown-menu").each(function () {
@@ -246,5 +258,78 @@
 
     // Highlight Lines correctly
     $('.hll').addClass('line marked');
+    
+    // ========================================================================
+    // AutoDoc
+    // ========================================================================
+    
+    // Module Wrapping
+    $('.section').each(function() {
+        if ($(this).attr('id').indexOf('module') != -1) {
+            var module = $(this).children('.section');
+            
+            module.addClass('panel panel-default');
+            module.children(':header').addClass('panel-title').wrap('<div class="panel-heading"></div>');
+            module.children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
+            module.find('p').addClass('panel-text');
+            patch_args(module);
+        };
+    });
+    
+    // Class Wrapping
+    $('.class').each(function() {
+        $(this).addClass('panel panel-success');
+        $(this).children('dt')
+            .addClass('panel-title')
+            .wrap('<div class="panel-heading"></div>')
+            .children('em:not(.property)').addClass('badge').css('font-size', '0.9em');
+        $(this).children('dd')
+            .addClass('panel-body')
+            .children('dl.docutils').children().unwrap();
+        $(this).find('p').addClass('panel-text');
+        patch_args($(this));
+    });
+    
+    // Function Wrappings
+    $('.function').each(function() {
+        $(this).addClass('panel panel-info');
+        $(this).children('dt')
+            .addClass('panel-title')
+            .wrap('<div class="panel-heading"></div>')
+            .children('em:not(.property)').addClass('badge').css('font-size', '0.9em');
+        $(this).children('dd')
+            .addClass('panel-body')
+            .children('dl.docutils').children().unwrap();
+        $(this).find('p').addClass('panel-text');
+        patch_args($(this));
+    });
+
+    // Method Wrappings
+    $('.method').each(function() {
+        $(this).addClass('panel panel-info');
+        $(this).children('dt')
+            .addClass('panel-title')
+            .wrap('<div class="panel-heading"></div>')
+            .children('em:not(.property)').addClass('badge').css('font-size', '0.9em');
+        $(this).children('dd')
+            .addClass('panel-body')
+            .children('dl.docutils').children().unwrap();
+        $(this).find('p').addClass('panel-text');
+        patch_args($(this));
+    });
+
+    // Attribute Wrappings
+    $('.attribute').each(function() {
+        $(this).addClass('panel panel-warning');
+        $(this).children('dt')
+            .addClass('panel-title')
+            .wrap('<div class="panel-heading"></div>')
+            .children('em:not(.property)').addClass('badge').css('font-size', '0.9em');
+        $(this).children('dd')
+            .addClass('panel-body')
+            .children('dl.docutils').children().unwrap();
+        $(this).find('p').addClass('panel-text');
+        patch_args($(this));
+    });
   });
 }(window.$jqTheme || window.jQuery));
