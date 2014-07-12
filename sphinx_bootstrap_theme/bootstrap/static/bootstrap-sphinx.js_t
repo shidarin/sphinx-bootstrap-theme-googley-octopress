@@ -169,7 +169,7 @@
     // Format the inside of the Note/Warning panels correctly
     $('.admonition').each(function() {
         $(this).children('.admonition-title').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + $(this).children('.admonition-title').text() + '</h3></div>');
-        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('p').addClass('panel-text');
         $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
         });
 
@@ -183,7 +183,7 @@
         
         $(this).children('p:first').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + versionMod + '</h3></div>');
         $(this).children('div:first').after('<p>' + firstLine + '</p>');
-        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('p').addClass('panel-text');
         $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
         $(this).addClass('panel panel-success');
         });
@@ -194,7 +194,7 @@
         
         $(this).children('p:first').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + versionMod + '</h3></div>');
         $(this).children('div:first').after('<p>' + firstLine + '</p>');
-        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('p').addClass('panel-text');
         $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
         $(this).addClass('panel panel-info');
         });
@@ -205,7 +205,7 @@
         
         $(this).children('p:first').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + versionMod + '</h3></div>');
         $(this).children('div:first').after('<p>' + firstLine + '</p>');
-        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('p').addClass('panel-text');
         $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
         $(this).addClass('panel panel-danger');
         });
@@ -251,8 +251,8 @@
     $('.highlighttable').each(function() {
         var codeType = $(this).parent().first().attr("class").replace('highlight-', '');
         
-        $(this).removeClass().wrap('<figure class="code panel panel-default"><div class="highlight"></div></figure>');
-        $(this).find('.linenos').removeClass().addClass('gutter').find('pre').addClass('line-numbers').wrapInner('<span class="line-number"></span>');
+        $(this).wrap('<figure class="code panel panel-default"><div class="highlight"></div></figure>');
+        $(this).find('.linenos').addClass('gutter').find('pre').addClass('line-numbers').wrapInner('<span class="line-number"></span>');
         $(this).find('.highlight').children().unwrap().wrapInner('<code class="' + codeType + '"></code>');
     });
 
