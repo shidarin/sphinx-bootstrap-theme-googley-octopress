@@ -331,5 +331,10 @@
         $(this).find('p').addClass('panel-text');
         patch_args($(this));
     });
+    
+    // Classifier Styling for Args
+    $('.classifier').addClass('label label-danger').css('font-size', '.86em');
+    $('.classifier-delimiter').addClass('badge');
+    
   });
 }(window.$jqTheme || window.jQuery));
