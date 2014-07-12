@@ -141,14 +141,25 @@
     // Patch tables.
     patchTables();
 
+    // ========================================================================
+    // Admonition Styles
+    // ========================================================================
+
     // Add Note, Warning styles. (BS v2,3 compatible).
-    $('.admonition').addClass('alert alert-info')
-      .filter('.warning, .caution')
-        .removeClass('alert-info')
-        .addClass('alert-warning').end()
-      .filter('.error, .danger')
-        .removeClass('alert-info')
-        .addClass('alert-danger alert-error').end();
+    $('.admonition').addClass('panel panel-info')
+      .filter('.note')
+        .removeClass('panel-info')
+        .addClass('panel-primary').end()
+      .filter('.warning, .caution, .error, .danger')
+        .removeClass('panel-info')
+        .addClass('panel-warning').end();
+    
+    // Format the inside of the Note/Warning panels correctly
+    $('.admonition').each(function() {
+        $(this).children('.admonition-title').replaceWith('<div class="panel-heading"><h3 class="panel-title">' + $(this).children('.admonition-title').text() + '</h3></div>');
+        $(this).children('p').removeClass().addClass('panel-text');
+        $(this).children('div:first').siblings().wrapAll('<div class="panel-body"></div>');
+        });
 
     // Inline code styles to Bootstrap style.
     $('tt.docutils.literal').not(".xref").each(function (i, e) {
