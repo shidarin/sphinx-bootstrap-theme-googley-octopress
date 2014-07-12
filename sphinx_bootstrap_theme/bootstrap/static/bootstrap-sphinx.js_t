@@ -237,6 +237,10 @@
     // Code Display
     // ========================================================================
 
+    /* Uncomment this code display if you're using this javascript in an
+    octopress blog. Otherwise it will just mess up the html display. */
+
+    /*
     // Code Without Line Numbers
     $('.highlight').each(function() {
         if ( !($(this).parent().first().hasClass('code')) ) {
@@ -261,6 +265,7 @@
 
     // Highlight Lines correctly
     $('.hll').addClass('line marked');
+    */
     
     // ========================================================================
     // AutoDoc
